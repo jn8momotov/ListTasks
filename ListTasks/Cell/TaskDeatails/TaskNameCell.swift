@@ -8,19 +8,24 @@
 
 import UIKit
 
-class TaskNameCell: UITableViewCell {
+class TaskNameCell: UITableViewCell, UITextFieldDelegate {
 
     @IBOutlet weak var textNameLabel: UITextField!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        textNameLabel.delegate = self
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    }
+    
+    // После нажатия на клавишу return на клавиатуре
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        // Скрыть фокус с текстового поля (клавиатура исчезнет)
+        textNameLabel.resignFirstResponder()
+        return true
     }
 
 }
